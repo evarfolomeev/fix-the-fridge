@@ -24,8 +24,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-
-
 	@RequestMapping("get-all")
 	@ResponseBody
 	public List<UserDto> getAll() {
@@ -46,7 +44,4 @@ public class UserController {
 	public void remove(@RequestBody UserDto userDto) {
 		userService.remove(userDto);
 	}
-
-
-
 }
