@@ -1,25 +1,35 @@
 package com.fix.the.fridge.controller;
 
+import com.fix.the.fridge.converters.IdeaConverter;
 import com.fix.the.fridge.dao.IdeaDao;
+import com.fix.the.fridge.dao.UserDao;
 import com.fix.the.fridge.domain.Idea;
 import com.fix.the.fridge.domain.User;
+import com.fix.the.fridge.dto.IdeaDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Arrays;
+import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 @RequestMapping("/idea")
+@Transactional
 public class IdeasController {
 
 	@Autowired
 	private IdeaDao ideaDao;
+	@Autowired
+	private UserDao userDao;
+	@Autowired
+	private IdeaConverter ideaConverter;
 
 	@RequestMapping
 	public String view(ModelMap model) {
@@ -29,31 +39,37 @@ public class IdeasController {
 
 	@RequestMapping("get-all")
 	@ResponseBody
-	public List<Idea> getAll() {
-		Idea idea1 = new Idea();
-		idea1.setId(1);
-		idea1.setDescription("this is description 1");
-		idea1.setTitle("this is title 1");
+	public List<IdeaDto> getAll() {
+		List<Idea> allIdeas = ideaDao.findAll();
+		List<IdeaDto> convertedIdeas = new ArrayList<>();
 
-		Idea idea2 = new Idea();
-		idea2.setId(2);
-		idea2.setDescription("this is description 2");
-		idea2.setTitle("this is title 2");
+		for (Idea idea : allIdeas) {
+			convertedIdeas.add(ideaConverter.convert(idea));
+		}
 
-		User user = new User();
-		user.setName("this is name");
-		user.setEmail("this.is.emale@test.com");
-		user.setNickName("thisIsNik");
-
-		idea1.setUser(user);
-		idea2.setUser(user);
-
-		return Arrays.asList(idea1, idea2);
+		return convertedIdeas;
 	}
 
-    @RequestMapping(value = "save", method = RequestMethod.POST)
-    public void save(@RequestBody Idea idea) {
-		ideaDao.save(idea);
-    }
+	@RequestMapping(value = "save", method = RequestMethod.POST)
+	@ResponseBody
+	public IdeaDto save(@RequestBody IdeaDto idea) {
+		ideaDao.save(ideaConverter.convert(idea));
+		return idea;
+	}
 
+	@RequestMapping("vote")
+	public void vote(@RequestParam Long ideaId, @RequestParam String userNickName) {
+		Idea idea = ideaDao.getById(ideaId);
+		if (idea == null) {
+			return;
+		}
+
+		User user = userDao.find(userNickName);
+		if (user == null) {
+			return;
+		}
+		idea.getVoters().add(user);
+
+
+	}
 }
