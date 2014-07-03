@@ -15,16 +15,16 @@ import javax.transaction.Transactional;
 @Transactional
 public class AttachmentDao {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+	@Autowired
+	private SessionFactory sessionFactory;
 
-    public void save(Attachment attachment) {
-        Session session = sessionFactory.getCurrentSession();
-        session.save(attachment);
-    }
+	public void save(Attachment attachment) {
+		Session session = sessionFactory.getCurrentSession();
+		session.save(attachment);
+	}
 
-    public Attachment get(String id) {
-        Session session = sessionFactory.getCurrentSession();
-        return (Attachment) session.get(Attachment.class, id);
-    }
+	public Attachment get(String id) {
+		Session session = sessionFactory.getCurrentSession();
+		return (Attachment) session.get(Attachment.class, id);
+	}
 }
