@@ -38,7 +38,7 @@ public class AttachmentController {
 		}
 
 		response.setContentType(attachment.getType());
-		response.setContentLength(attachment.getData().length);
+		response.setContentLength( attachment.getData().length);
 		FileCopyUtils.copy(attachment.getData(), response.getOutputStream());
 
 	}
