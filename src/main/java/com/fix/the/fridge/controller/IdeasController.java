@@ -68,6 +68,7 @@ public class IdeasController {
 		if (user == null) {
 			return;
 		}
+
 		idea.getVoters().add(user);
 
 

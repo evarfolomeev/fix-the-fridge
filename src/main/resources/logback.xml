@@ -6,7 +6,7 @@
 	</appender>
 
 	<logger name="com.fix.the.fridge" level="INFO"/>
-	<logger name="org.springframework" level="WARN"/>
+	<logger name="org.springframework" level="INFO"/>
 
 	<root level="WARN">
 		<appender-ref ref="STDOUT"/>
