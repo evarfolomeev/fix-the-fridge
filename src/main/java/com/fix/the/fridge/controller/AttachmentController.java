@@ -2,8 +2,6 @@ package com.fix.the.fridge.controller;
 
 import com.fix.the.fridge.dao.AttachmentDao;
 import com.fix.the.fridge.domain.Attachment;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
@@ -38,7 +36,7 @@ public class AttachmentController {
 		}
 
 		response.setContentType(attachment.getType());
-		response.setContentLength( attachment.getData().length);
+		response.setContentLength(attachment.getData().length);
 		FileCopyUtils.copy(attachment.getData(), response.getOutputStream());
 
 	}
