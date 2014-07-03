@@ -20,18 +20,18 @@ public class IdeaDao {
 	public List<Idea> findAll() {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("from Idea");
-		return (List<Idea>) query.list();
+		return query.list();
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Idea> getByUser(String userNick) {
+	public List<Idea> findByUser(String userNick) {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("from Idea where user = :userNick");
 		query.setParameter("userNick", userNick);
 		return query.list();
 	}
 
-	public Idea getById(long id) {
+	public Idea findById(long id) {
 		Session session = sessionFactory.getCurrentSession();
 		return (Idea) session.get(Idea.class, id);
 	}

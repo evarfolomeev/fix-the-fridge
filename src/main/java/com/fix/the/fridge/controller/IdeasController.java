@@ -58,8 +58,9 @@ public class IdeasController {
 	}
 
 	@RequestMapping("vote")
+	@ResponseBody
 	public void vote(@RequestParam Long ideaId, @RequestParam String userNickName) {
-		Idea idea = ideaDao.getById(ideaId);
+		Idea idea = ideaDao.findById(ideaId);
 		if (idea == null) {
 			return;
 		}
@@ -70,7 +71,6 @@ public class IdeasController {
 		}
 
 		idea.getVoters().add(user);
-
-
+		ideaDao.save(idea);
 	}
 }
