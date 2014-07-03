@@ -39,7 +39,7 @@ public class UserConverter {
 		targetUser.setNickName(sourceUser.getNickName());
 		targetUser.setName(sourceUser.getName());
 		targetUser.setEmail(sourceUser.getEmail());
-		targetUser.setAvatarName(sourceUser.getAvatar().getId());
+		targetUser.setAvatarName(sourceUser.getAvatar() == null ? null : sourceUser.getAvatar().getId());
 
 		return targetUser;
 	}
