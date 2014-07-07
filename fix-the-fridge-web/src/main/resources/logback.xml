@@ -1,0 +1,14 @@
+<configuration>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d - %msg %n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.fix.the.fridge" level="INFO"/>
+	<logger name="org.springframework" level="DEBUG"/>
+
+	<root level="WARN">
+		<appender-ref ref="STDOUT"/>
+	</root>
+</configuration>

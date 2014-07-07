@@ -1,0 +1,65 @@
+div.container-with-margin-top {
+    margin-top: 75px;
+}
+
+div.new-idea-label-div {
+    width: 150px;
+}
+
+div.new-idea-submit-div {
+    width: 50px;
+}
+
+label.new-idea-label {
+    width: 130px;
+}
+
+textarea.description-textarea {
+    display: none;
+    margin-top: 15px;
+}
+
+#fileUploadButton {
+    visibility: hidden; width: 0; height: 0
+}
+
+div.hiddenPanel {
+    display: none;
+}
+
+img.img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+div.panel-image {
+    max-width: 200px;
+    max-height: 200px;
+    float: left;
+    margin: -10px 15px -10px -15px;
+}
+
+div.hiddenIdeaTemplatePanel {
+    display: none;
+}
+
+div.well {
+    margin-top: 15px;
+}
+
+p.no-wrap {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+div.main-comment-panel {
+    background-color: #eeeef1;
+    margin: -21px 0 10px 0;
+    padding: 10px;
+    display: none;
+}
+
+input.hidden-button {
+    display: none;
+}

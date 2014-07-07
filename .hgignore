@@ -1,0 +1,41 @@
+# use glob syntax.
+syntax: glob
+.idea
+target
+bin
+.classpath
+.*project
+.project
+.settings
+*~
+*.log
+*.orig
+*.iml
+.idea
+
+syntax: regexp
+^fix-the-fridge-android/app/build/
+
+syntax: regexp
+^fix-the-fridge-android/build/
+
+syntax: regexp
+^fix-the-fridge-android/app/build/generated/
+
+syntax: regexp
+^fix-the-fridge-android/build.gradle$
+
+syntax: regexp
+^fix-the-fridge-android/gen/
+
+syntax: regexp
+^fix-the-fridge-android/local.properties$
+
+syntax: regexp
+^fix-the-fridge-android/.gradle$
+
+syntax: regexp
+^fix-the-fridge-android/.idea/workspace.xml
+
+syntax: regexp
+^fix-the-fridge-android/.idea/dictionaries/
